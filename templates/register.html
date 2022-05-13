@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Register Page</title>
+    <!-- plugins:css -->
+
+
+    {% import "bootstrap/wtf.html" as wtf %}
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='materialdesignicons.min.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='style.css') }}"
+  />
+    
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+          <div class="row w-100">
+            <div class="col-lg-4 mx-auto">
+                <h3 class="text-center mb-4 ">Credit Card Fraud Detection System</h3>
+
+             
+              <div class="auto-form-wrapper">
+                <!-- registeration.php  -->
+              <form action="/register" method="post">
+                <h3 class="text-center mb-4">Register</h3>
+                
+               
+                 
+                {{ form.hidden_tag() }}
+                  
+                {{ wtf.form_field(form.name) }}
+                {{ wtf.form_field(form.username) }}
+                {{  wtf.form_field(form.password) }}
+                
+              
+                  
+                  <div class="form-group">
+                    <button class="btn submit-btn btn-block" type="submit" name="submit" style="background:rgb(157, 208, 237);">Register</button>
+                  </div>
+                  <div class="text-block text-center my-3">
+                    <span class="text-small font-weight-semibold">Already have and account ?</span>
+                    <a href="{{ url_for('login') }}" class="text-black text-small">Login</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    </body>
+</html>

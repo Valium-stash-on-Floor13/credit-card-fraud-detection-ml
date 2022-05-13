@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <!-- plugins:css -->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='style.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.addons.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.base.css') }}"
+  />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+   
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.php -->
+
+   <!-- partial:partials/_navbar.php -->
+   <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+      <a class="navbar-brand brand-logo" href="index.php">
+        <span>CredX</span> </a>
+      
+   
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center">
+      
+      
+  
+      
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.php -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <a href="#" class="nav-link">
+            <div class="profile-image">
+            
+             
+            <div class="text-wrapper">
+                <h4  class="text-white">Hi, {{ current_user.name }}</h4>
+           
+             
+             
+            </div>
+          </a>
+        </li>
+        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main') }}">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('single') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">Single Transaction Detection</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('about') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">
+            <i class="menu-icon typcn typcn-bell"></i>
+            <span class="menu-title">Logout</span>
+          </a>
+        </li>
+       
+        
+     
+       
+      
+   
+      </ul>
+      
+    </nav>
+  
+ 
+ 
+
+ 
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <!-- Page Title Header Starts-->
+            <div class="row page-title-header">
+              <div class="col-12">
+                <div class="page-header">
+                  <h4 class="page-title">About</h4>
+              
+                </div>
+              </div>
+              <div class="col-md-12">
+              
+              </div>
+            </div>
+            <!-- Page Title Header Ends-->
+          
+<div class="row">
+    <div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class=" alert bg-primary p-2 text-white mb-3">About The Project</h4>
+        
+            <p>Credit Card Fraud Transaction Detection predicts the possible legitimacy of atransaction done by credit cards by taking certain measures in account. Status of a transaction is being predicted by using the already trained machine leaning model. 
+
+            </p>
+            <br>
+            <h4 class="alert bg-primary p-2 text-white mb-3">Team Members</h4>
+            <p>Our team worked on different sections of this web app to present it in a viewable manner by using Html, Css, and bootstrap for the client side and Flask to render the backend code of python.
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item bg-primary text-white">Developed by:</li>
+                <li class="list-group-item">Sai Manohar Lutikurthi</li>
+                <li class="list-group-item">Devika Moturi</li>
+                <li class="list-group-item">Vijaya Nagelli</li>
+                
+              </ul>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+       
+         
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.php -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Credit Card Fraud Detection</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+
+    
+  </body>
+</html>

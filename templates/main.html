@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <!-- plugins:css -->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='style.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.addons.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.base.css') }}"
+  />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.php -->
+
+   <!-- partial:partials/_navbar.php -->
+   <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+      <a class="navbar-brand brand-logo" href="index.php">
+        <span>CredX</span> </a>
+      
+   
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center">
+      
+      
+  
+      
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.php -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <a href="#" class="nav-link">
+            <div class="profile-image">
+            
+             
+            <div class="text-wrapper">
+                <h4  class="text-white">Hi, {{ current_user.name }}</h4>
+           
+             
+             
+            </div>
+          </a>
+        </li>
+        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main') }}">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('single') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">Single Transaction Detection</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('about') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">
+            <i class="menu-icon typcn typcn-bell"></i>
+            <span class="menu-title">Logout</span>
+          </a>
+        </li>
+       
+        
+     
+       
+      
+   
+      </ul>
+      
+    </nav>
+  
+ 
+
+ 
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <!-- Page Title Header Starts-->
+            <div class="row page-title-header">
+              <div class="col-12">
+                <div class="page-header">
+                  <h4 class="page-title">Dashboard</h4>
+              
+                </div>
+                <div class="row">
+                  <div class="container">
+                  <div class="card">
+                      <div class="card-body">
+                <form enctype="multipart/form-data" action="/predict" method="POST">
+                  <input type="file" name="multipleTran" id="btn"  accept=".csv, .xlsx">
+                  <button type="submit" class="btn btn-primary text-white" style="background:rgb(33, 173, 255);" >Submit</button>
+                </form>
+              </div>
+             
+             
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!-- Page Title Header Ends-->
+            {% if not total %}
+
+            <div class="card">
+              <div class="card-body">
+                <h4 class="bg-danger p-2 text-white">Upload files to see the analysis</h4>
+              </div>
+            </div> 
+          
+            {% else %}
+
+
+
+          
+<div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                     
+     
+                   <input type="hidden" id="totfraud" value={{total_legit}}>
+                   <input type="hidden" id="totlegit" value={{total_fraud}}>
+
+                      <div class="col-md-3 grid-margin stretch-card average-price-card">
+                        <div class="card text-white bg-light">
+                          <div class="card-body">
+                          <h4 style="background: #c5ecff; padding:12px;" class="card-title">Transaction Overview</h4>
+    
+    
+                          <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const totfraud = document.getElementById('totfraud').value;
+    const totlegit = document.getElementById('totlegit').value;
+
+    const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [  'Valid','Fraud'],
+            datasets: [{
+                label: 'Percentage',
+                data: [ totfraud,totlegit],
+                backgroundColor: [
+                    'rgba(134, 255, 41, 1)',
+                    'rgba(255, 43, 89, 1)'
+                ],
+                borderColor: [
+                'rgba(134, 255, 41, 1)',
+                    'rgba(255, 43, 89, 1)'
+                    
+                ],
+                borderWidth: 1
+            }]
+        },
+        // options: {
+        //     scales: {
+        //         y: {
+        //             beginAtZero: true
+        //         }
+        //     }
+        // }
+    });
+    </script>
+    
+                          </div>
+                        </div>
+                      </div>
+
+
+                  <div class="col-md-3 grid-margin stretch-card average-price-card">
+                    <div class="card text-white">
+                      <div class="card-body bg-primary">
+                        <div class="d-flex justify-content-between pb-2 align-items-center">
+                          <h2 class="font-weight-semibold mb-0">{{ total }}</h2>
+                          <div class="icon-holder">
+                            <i class="mdi mdi-briefcase-outline"></i>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                          <h5 class="font-weight-semibold mb-0">Total Transactions</h5>
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 grid-margin stretch-card average-price-card">
+                    <div class="card text-white">
+                      <div class="card-body bg-primary">
+                        <div class="d-flex justify-content-between pb-2 align-items-center">
+                          <h2 class="font-weight-semibold mb-0">{{ total_fraud }}</h2>
+                          <div class="icon-holder">
+                            <i class="mdi mdi-briefcase-outline"></i>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                          <h5 class="font-weight-semibold mb-0">Total Fraud Transactions</h5>
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 grid-margin stretch-card average-price-card">
+                    <div class="card text-white">
+                      <div class="card-body bg-primary">
+                        <div class="d-flex justify-content-between pb-2 align-items-center">
+                          <h2 class="font-weight-semibold mb-0">{{ total_legit }}</h2>
+                          <div class="icon-holder">
+                            <i class="mdi mdi-briefcase-outline"></i>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                          <h5 class="font-weight-semibold mb-0">Total Valid Transactions</h5>
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  
+                      
+                    
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+    
+
+            <div class="table-responsive">
+              <table class="table table-striped table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col"> Class</th>
+                    <th scope="col"> Time</th>
+                    <th scope="col">V1</th>
+                    <th scope="col">V2</th>
+                    <th scope="col">V3</th>
+                    <th scope="col">V4</th>
+                    <th scope="col">V5</th>
+                    <th scope="col">V6</th>
+                    <th scope="col">V7</th>
+                    <th scope="col">V8</th>
+                    <th scope="col">V9</th>
+                    <th scope="col">V10</th>
+                    <th scope="col">V11</th>
+                    <th scope="col">V12</th>
+                    <th scope="col">V13</th>
+                    <th scope="col">V14</th>
+                    <th scope="col">V15</th>
+                    <th scope="col">V16</th>
+                    <th scope="col">V17</th>
+                    <th scope="col">V18</th>
+                    <th scope="col">V19</th>
+                    <th scope="col">V20</th>
+                    <th scope="col">V21</th>
+                    <th scope="col">V22</th>
+                    <th scope="col">V23</th>
+                    <th scope="col">V24</th>
+                    <th scope="col">V25</th>
+                    <th scope="col">V26</th>
+                    <th scope="col">V27</th>
+                    <th scope="col">V28</th>
+                  
+                    <th scope="col">Amount</th>
+                   
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  {% endif %}
+                 
+             
+       
+            {% for item in data %} 
+            <tr>
+           
+             {% for i in item %}
+             
+               <td> {{ i }} </td>
+
+
+              {% endfor %}
+             
+            </tr>
+           {% endfor %}
+                 
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+
+
+
+
+
+         
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.php -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Credit Card Fraud Detection</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+ 
+
+
+  </body>
+</html>

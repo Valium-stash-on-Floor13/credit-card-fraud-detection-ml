@@ -1,0 +1,86 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login Page</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    {% import "bootstrap/wtf.html" as wtf %}
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='style.css') }}"
+  />
+    <!-- endinject -->
+    
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+            
+          <div class="row w-100">
+       
+            <div class="col-lg-4 mx-auto">
+                <h3 class="text-center mb-4 text-white">Credit Card Fraud Detection System</h3>
+           
+              <div class="auto-form-wrapper">
+             
+              <form name="myform" class="form-signin" method="post" action="/login">
+                <h3 class="text-center mb-4 text-dark">Login</h3>
+                  <div class="form-group">
+                  
+                    {{ form.hidden_tag() }}
+                  
+                    {{ wtf.form_field(form.username) }}
+                
+                    {{  wtf.form_field(form.password) }}
+                    
+                   
+                </div>
+                  <div class="form-group">
+                    <button class="btn submit-btn btn-block" style="background:rgb(157, 208, 237);">Login</button>
+                  </div>
+                  <div class="form-group d-flex justify-content-between">
+                    <!-- <div class="form-check form-check-flat mt-0">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
+                    </div> -->
+                  </div>
+                  <!-- <div class="form-group">
+                    <button class="btn btn-block g-login">
+                      <img class="mr-3" src="../../../assets/images/file-icons/icon-google.svg" alt="">Log in with Google</button>
+                  </div> -->
+                  <div class="text-block text-center my-3">
+                    <span class="text-small font-weight-semibold">Not an admin?</span>
+                    <a href="{{ url_for('register') }}" class="text-black text-small">Create admin account</a>
+                  </div>
+                </form>
+              </div>
+             
+
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+  
+     </body>
+</html>

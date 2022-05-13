@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <!-- plugins:css -->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='style.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.addons.css') }}"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='vendor.bundle.base.css') }}"
+  />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+   
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.php -->
+
+   <!-- partial:partials/_navbar.php -->
+   <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+      <a class="navbar-brand brand-logo" href="index.php">
+        <span>CredX</span> </a>
+      
+   
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center">
+      
+      
+  
+      
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.php -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <a href="#" class="nav-link">
+            <div class="profile-image">
+            
+             
+            <div class="text-wrapper">
+                <h4  class="text-white">Hi, {{ current_user.name }}</h4>
+           
+             
+             
+            </div>
+          </a>
+        </li>
+        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main') }}">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('single') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">Single Transaction Detection</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('about') }}">
+            <i class="menu-icon typcn typcn-shopping-bag"></i>
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">
+            <i class="menu-icon typcn typcn-bell"></i>
+            <span class="menu-title">Logout</span>
+          </a>
+        </li>
+       
+        
+     
+       
+      
+   
+      </ul>
+      
+    </nav>
+  
+ 
+  
+ 
+
+ 
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <!-- Page Title Header Starts-->
+            <div class="row page-title-header">
+              <div class="col-12">
+                <div class="page-header">
+                  <h4 class="page-title">Single Transaction Prediction</h4>
+              
+                </div>
+                <div class="row">
+                  <div class="container">
+                  <div class="card">
+                      <div class="card-body">
+                <form enctype="multipart/form-data" action="/predictsingle" method="POST">
+                  <label for="">Only .csv files are allowed</label>
+                  <input type="file" name="multipleTran" id="btn"  accept=".csv, .xlsx">
+                  <button type="submit" class="btn btn-primary text-white" style="background:rgb(33, 173, 255);" >Submit</button>
+                </form>
+              </div>
+             
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <!-- Page Title Header Ends-->
+			
+          
+<div class="row">
+    <div class="container">
+		<div class="card">
+		
+          {% if message == "Valid" %}
+          
+
+          <div class="col-md-3 grid-margin stretch-card average-price-card p-3">
+            <div class="card text-white">
+              <div class="card-body bg-success">
+                <div class="d-flex justify-content-between pb-2 align-items-center">
+                  <h2 class="font-weight-semibold mb-0">Valid</h2>
+                 
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h5 class="font-weight-semibold mb-0">Transaction Status</h5>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          {% elif message == "Fraud" %}
+          
+            <div class="col-md-3 grid-margin stretch-card average-price-card p-3">
+              <div class="card text-white">
+                <div class="card-body bg-danger">
+                  <div class="d-flex justify-content-between pb-2 align-items-center">
+                    <h2 class="font-weight-semibold mb-0">Fraud</h2>
+                   
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <h5 class="font-weight-semibold mb-0">Transaction Status</h5>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div> 
+	
+
+		</div>
+		</div>
+
+</div>
+<br><br>
+           
+       
+         
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.php -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Credit Card Fraud Detection</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="assets/js/shared/off-canvas.js"></script>
+    <script src="assets/js/shared/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/demo_1/dashboard.js"></script>
+    <!-- End custom js for this page-->
+    <script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+  </body>
+</html>
+
+
+   
